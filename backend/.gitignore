@@ -6,6 +6,7 @@ dist/
 build/
 uploads/
 coverage/
+scripts/
 
 # Logs
 npm-debug.log*
