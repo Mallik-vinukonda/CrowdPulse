@@ -10,22 +10,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-//app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
-const allowedOrigins = [
-  "https://crowd-pulse-57g3.vercel.app", // Production
-  "https://crowd-pulse-57g3-f3jpxcd6v-mallik-vinukondas-projects.vercel.app" // Preview
-];
-
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-}));
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 
 
 app.use(helmet());
