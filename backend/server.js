@@ -10,7 +10,29 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+
+// ✅ Flexible CORS setup for Vercel
+app.use(
+	cors({
+		origin: function (origin, callback) {
+			const allowedOrigins = [
+				"https://crowd-pulse-57g3.vercel.app", // Production frontend
+			];
+
+			// Allow all Vercel preview URLs (they end with .vercel.app)
+			if (
+				!origin ||
+				allowedOrigins.includes(origin) ||
+				origin.endsWith(".vercel.app")
+			) {
+				callback(null, true);
+			} else {
+				callback(new Error("Not allowed by CORS"));
+			}
+		},
+		credentials: true,
+	})
+);
 
 app.use(helmet());
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
@@ -36,9 +58,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Error handler middleware (should be the last middleware)
 app.use((err, req, res, next) => {
-	res
-		.status(err.status || 500)
-		.json({ message: err.message || "Server Error" });
+	res.status(err.status || 500).json({ message: err.message || "Server Error" });
 });
 
 // Define the port (make sure PORT is set in your Render/Heroku environment variables)
