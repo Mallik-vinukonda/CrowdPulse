@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: crowdpulse-backend
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build:prod
+    startCommand: npm run start:prod
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PORT
+        value: 5000
+      - key: CORS_ORIGIN
+        value: "*"
+      - key: MONGODB_URI
+        fromDatabase:
+          name: crowdpulse-db
+          property: connectionString
+
+databases:
+  - name: crowdpulse-db
+    databaseName: crowdpulse
+    user: crowdpulse_user
+    plan: free

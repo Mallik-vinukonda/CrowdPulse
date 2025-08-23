@@ -1,0 +1,48 @@
+{
+	"name": "CrowdPulse",
+	"description": "A community-driven platform for reporting and resolving local issues",
+	"repository": "https://github.com/yourusername/crowdpulse",
+	"logo": "https://node-js-sample.herokuapp.com/node.png",
+	"keywords": ["node", "express", "react", "mongodb", "community"],
+	"image": "heroku/nodejs",
+	"addons": [
+		{
+			"plan": "mongolab:sandbox"
+		}
+	],
+	"env": {
+		"NODE_ENV": {
+			"description": "Node environment",
+			"value": "production"
+		},
+		"JWT_SECRET": {
+			"description": "Secret key for JWT tokens",
+			"generator": "secret"
+		},
+		"MONGODB_URI": {
+			"description": "MongoDB connection string (will be provided by MongoLab addon)"
+		},
+		"PORT": {
+			"description": "Port number for the application",
+			"value": "5000"
+		},
+		"CORS_ORIGIN": {
+			"description": "Allowed CORS origins",
+			"value": "*"
+		}
+	},
+	"formation": {
+		"web": {
+			"quantity": 1,
+			"size": "eco"
+		}
+	},
+	"buildpacks": [
+		{
+			"url": "heroku/nodejs"
+		}
+	],
+	"scripts": {
+		"postdeploy": "echo 'Deployment completed successfully'"
+	}
+}
