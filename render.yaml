@@ -3,7 +3,7 @@ services:
     name: crowdpulse-backend
     env: node
     plan: free
-    buildCommand: npm install && npm run build:prod
+    buildCommand: npm install && npm run install:all && npm run build:prod
     startCommand: npm run start:prod
     healthCheckPath: /api/health
     envVars:
@@ -16,12 +16,4 @@ services:
       - key: CORS_ORIGIN
         value: "*"
       - key: MONGODB_URI
-        fromDatabase:
-          name: crowdpulse-db
-          property: connectionString
-
-databases:
-  - name: crowdpulse-db
-    databaseName: crowdpulse
-    user: crowdpulse_user
-    plan: free
+        value: "mongodb+srv://username:password@cluster.mongodb.net/crowdpulse?retryWrites=true&w=majority"

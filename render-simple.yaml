@@ -1,0 +1,24 @@
+# Alternative simple Render configuration
+# Use this if the blueprint approach fails
+
+# Instructions:
+# 1. Go to Render Dashboard
+# 2. Create "Web Service" manually
+# 3. Connect your GitHub repository
+# 4. Use these settings:
+
+# Build Command: npm install && npm run install:all && npm run build:prod
+# Start Command: npm run start:prod
+# Environment: Node
+# Plan: Free
+
+# Environment Variables to set manually:
+# NODE_ENV=production
+# JWT_SECRET=(generate a random string)
+# PORT=5000
+# CORS_ORIGIN=*
+# MONGODB_URI=(get from your MongoDB Atlas or create a database service)
+
+# For MongoDB, you can either:
+# 1. Use MongoDB Atlas (recommended) - get connection string
+# 2. Create a separate database service on Render
