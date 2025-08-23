@@ -16,4 +16,4 @@ services:
       - key: CORS_ORIGIN
         value: "*"
       - key: MONGO_URI
-        value: "mongodb+srv://username:password@cluster.mongodb.net/crowdpulse?retryWrites=true&w=majority"
+        value: "mongodb+srv://mydb:mypassword@cluster0.05teq0z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
